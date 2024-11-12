@@ -23,12 +23,15 @@ gem "jbuilder"
 # gem "kredis"
 
 gem 'bootstrap-sass'
-gem 'font-awesome-rails'
+# gem 'font-awesome-rails'
 gem 'sorcery'
 gem 'ancestry'
 gem 'will_paginate'
 gem 'paperclip', '~> 6.1.0'
 gem 'rest-client'
+gem 'font-awesome-sass'
+gem 'jquery-rails'
+
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
