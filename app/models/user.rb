@@ -2,16 +2,19 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   attr_accessor :password, :password_confirmation, :token
-  attr_accessor :cellphone
+  # 修复问题添加
+  # attr_accessor :cellphone
+  # attr_accessor :uuid
+
 
   CELLPHONE_RE = /\A(\+86|86)?1\d{10}\z/
   EMAIL_RE = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 
-  # validates_presence_of :email, message: "emial cannot be empty"
-  # validates_format_of :email, message: "The mailbox format is incorrect",
-  #   with: /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
-  #   if: proc { |user| !user.email.blank? }
-  # validates :email, uniqueness: true
+  validates_presence_of :email, message: "emial cannot be empty"
+  validates_format_of :email, message: "The mailbox format is incorrect",
+    with: /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
+     if: proc { |user| !user.email.blank? }
+  validates :email, uniqueness: true
 
   validates_presence_of :password, message: "The password cannot be empty",
     if: :need_validate_password

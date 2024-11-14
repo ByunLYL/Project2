@@ -1,31 +1,34 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module EcommerceProject
+ENV['ALIPAY_PID'] = 'YOUR-ALIPAY-PARTNER-ID'
+ENV['ALIPAY_MD5_SECRET'] = 'YOUR-ALIPAY-MD5-SECRET'
+ENV['ALIPAY_URL'] = 'https://mapi.alipay.com/gateway.do'
+ENV['ALIPAY_RETURN_URL'] = 'http://localhost:3000/payments/pay_return'
+ENV['ALIPAY_NOTIFY_URL'] = 'http://localhost:3000/payments/pay_notify'
+
+
+module MasterRailsByActions
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
 
-    # Please, add to the `ignore` list any other `lib` subdirectories that do
-    # not contain `.rb` files, or that should not be reloaded or eager loaded.
-    # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w[assets tasks])
+    # Rails 5中在生产环境下autoload_paths并不会自动加载，需要下面的配置重新启用
+    config.enable_dependency_loading = true
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.autoload_paths += %W[#{Rails.root}/lib]
+
     config.generators do |generator|
       generator.assets false
       generator.test_framework false
+      generator.skip_routes true
     end
+
   end
 end
