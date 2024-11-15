@@ -2,7 +2,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   before_action :find_root_categories, only: [:new, :create, :edit, :update]
   before_action :find_category, only: [:edit, :update, :destroy]
-  
+
   def index
     if params[:id].blank?
       @categories = Category.roots
@@ -51,7 +51,7 @@ class Admin::CategoriesController < Admin::BaseController
       redirect_to admin_categories_path
     else
       flash[:notice] = "删除失败"
-      redirect_to :back
+      redirect_to(request.referer || admin_product_images_path)
     end
   end
 

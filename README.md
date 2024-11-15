@@ -25,4 +25,9 @@ Things you may want to cover:
 <!-- github comment
 git add .
 git commit -m "(3) xxxxx"
-git push -u origin main -->
+git push -u origin main(master) -->
+
+rails c
+u = User.find 2
+u.is_admin = true
+u.save

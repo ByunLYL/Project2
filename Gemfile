@@ -27,10 +27,11 @@ gem 'bootstrap-sass'
 gem 'sorcery'
 gem 'ancestry'
 gem 'will_paginate'
-
 gem 'rest-client'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
+gem 'mini_magick'
+gem "image_processing", "~> 1.2"
 
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]

@@ -46,7 +46,8 @@ class Admin::ProductsController < Admin::BaseController
       redirect_to admin_products_path
     else
       flash[:notice] = "删除失败"
-      redirect_to :back
+      redirect_to(request.referer || admin_product_images_path)
+
     end
   end
 

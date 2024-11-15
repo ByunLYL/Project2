@@ -14,7 +14,7 @@
       <% @product.product_images.each do |product_image| %>
         <div class="col-xs-6 col-md-3">
           <a href="#" class="thumbnail detail">
-            <%= image_tag product_image.image.url(:middle) %>
+<%= image_tag product_image.image.variant(resize_to_limit: [300, 300]) %>
           </a>
         </div>
       <% end -%>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_14_040236) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_15_154325) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -97,10 +97,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_14_040236) do
   create_table "product_images", force: :cascade do |t|
     t.integer "product_id"
     t.integer "weight", default: 0
-    t.integer "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["image_id"], name: "index_product_images_on_image_id"
     t.index ["product_id", "weight"], name: "index_product_images_on_product_id_and_weight"
     t.index ["product_id"], name: "index_product_images_on_product_id"
   end
@@ -170,5 +168,4 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_14_040236) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "product_images", "images"
 end

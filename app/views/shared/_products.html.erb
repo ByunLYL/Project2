@@ -2,7 +2,11 @@
   <% @products.each do |product| %>
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <%= link_to image_tag(product.main_product_image.image.url(:middle), alt: product.title), product_path(product) %>
+        <% if product.main_product_image.image.attached? %>
+          <%= link_to image_tag(product.main_product_image.image.variant(resize_to_limit: [300, 300]).processed, alt: product.title), product_path(product) %>
+        <% else %>
+          <%= link_to image_tag("default_image.jpg", alt: product.title), product_path(product) %>  <!-- 默认图片 -->
+        <% end %>
         <div class="caption">
           <h4><%= link_to product.title, product_path(product), class: 'title' %></h4>
           <p><strong>¥<%= product.price %></strong> <span class="msrp">¥<%= product.msrp %></span></p>
@@ -10,7 +14,7 @@
         </div>
       </div>
     </div>
-  <% end -%>
+  <% end %>
 </div>
 
 <%= will_paginate @products %>

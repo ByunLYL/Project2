@@ -11,7 +11,8 @@ class Admin::ProductImagesController < Admin::BaseController
       @product.product_images << ProductImage.new(image: image)
     end
 
-    redirect_to :back
+    redirect_to(request.referer || admin_product_images_path)
+
   end
 
   def destroy
@@ -22,7 +23,8 @@ class Admin::ProductImagesController < Admin::BaseController
       flash[:notice] = "删除失败"
     end
 
-    redirect_to :back
+    redirect_to(request.referer || admin_product_images_path)
+
   end
 
   def update
@@ -34,7 +36,8 @@ class Admin::ProductImagesController < Admin::BaseController
       flash[:notice] = "修改失败"
     end
 
-    redirect_to :back
+    redirect_to(request.referer || admin_product_images_path)
+
   end
 
   private
