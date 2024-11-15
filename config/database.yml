@@ -1,0 +1,27 @@
+# SQLite3. No need for MySQL-specific configurations.
+#
+# Install the SQLite3 gem if not already present:
+#   gem install sqlite3
+#
+# Ensure the SQLite3 gem is defined in your Gemfile
+#   gem 'sqlite3', '~> 1.4'
+#
+# SQLite3 uses a file-based database, so the database file path is specified directly.
+
+default: &default
+  adapter: sqlite3
+  encoding: utf8
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  database: db/test.sqlite3
+
+production:
+  <<: *default
+  database: db/production.sqlite3
