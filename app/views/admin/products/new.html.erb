@@ -1,13 +1,13 @@
 <div>
-  <h1><%= @product.new_record? ? "新建商品" : "修改商品 ##{params[:id]}" %></h1>
+  <h1><%= @product.new_record? ? "Create Product" : "Edit Product ##{params[:id]}" %></h1>
 </div>
 
 <div class="form-body">
-  <%= form_for @product, 
-    url: (@product.new_record? ? admin_products_path : admin_product_path(@product)), 
-    method: (@product.new_record? ? 'post' : 'put'), 
+  <%= form_for @product,
+    url: (@product.new_record? ? admin_products_path : admin_product_path(@product)),
+    method: (@product.new_record? ? 'post' : 'put'),
     html: { class: 'form-horizontal' } do |f| %>
-    
+
     <% unless @product.errors.blank? %>
       <div class="alert alert-danger">
         <ul class="list-unstyled">
@@ -20,13 +20,13 @@
 
 
     <div class="form-group">
-      <label for="title" class="col-sm-2 control-label">名称:*</label>
+      <label for="title" class="col-sm-2 control-label">Product Name:*</label>
       <div class="col-sm-5">
         <%= f.text_field :title, class: "form-control" %>
       </div>
     </div>
     <div class="form-group">
-      <label for="category_id" class="col-sm-2 control-label">所属分类:</label>
+      <label for="category_id" class="col-sm-2 control-label">Product Category:</label>
       <div class="col-sm-5">
         <select name="product[category_id]">
           <option></option>
@@ -41,23 +41,23 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="title" class="col-sm-2 control-label">上下架状态:*</label>
+      <label for="title" class="col-sm-2 control-label">Availability Status:*</label>
       <div class="col-sm-5">
         <select name="product[status]">
-          <% [[Product::Status::On, '上架'], [Product::Status::Off, '下架']].each do |row| %>
+          <% [[Product::Status::On, 'Available'], [Product::Status::Off, 'Unavailable']].each do |row| %>
             <option value="<%= row.first %>" <%= 'selected' if @product.status == row.first %>><%= row.last %></option>
           <% end -%>
         </select>
       </div>
     </div>
     <div class="form-group">
-      <label for="amount" class="col-sm-2 control-label">库存*:</label>
+      <label for="amount" class="col-sm-2 control-label">Stock*:</label>
       <div class="col-sm-5">
-        <%= f.text_field :amount, class: "form-control" %> 必须为整数
+        <%= f.text_field :amount, class: "form-control" %> Must be an integer
       </div>
     </div>
     <div class="form-group">
-      <label for="price" class="col-sm-2 control-label">价格*:</label>
+      <label for="price" class="col-sm-2 control-label">Price*:</label>
       <div class="col-sm-5">
         <%= f.text_field :price, class: "form-control" %>
       </div>
@@ -69,14 +69,14 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="description" class="col-sm-2 control-label">描述*:</label>
+      <label for="description" class="col-sm-2 control-label">Description*:</label>
       <div class="col-sm-5">
         <%= f.text_area :description, class: "form-control" %>
       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-8">
-        <%= f.submit (@product.new_record? ? "新建商品" : "编辑商品"), class: "btn btn-default" %>
+        <%= f.submit (@product.new_record? ? "Create Product" : "Edit Product"), class: "btn btn-default" %>
       </div>
     </div>
   <% end -%>

@@ -1,13 +1,13 @@
 <div>
   <div class="pull-right">
-    <%= link_to "新建分类", new_admin_category_path, class: "btn btn-primary" %>
+    <%= link_to "New Category", new_admin_category_path, class: "btn btn-primary" %>
   </div>
 
   <h1>
     <% if @category %>
-      分类:<%= @category.title %>(<%= @categories.total_entries %>)
+      Category:<%= @category.title %>(<%= @categories.total_entries %>)
     <% else %>
-      分类(<%= @categories.total_entries %>)
+    Category(<%= @categories.total_entries %>)
     <% end -%>
   </h1>
 </div>
@@ -16,7 +16,7 @@
   <table class="table table-striped">
     <tr>
       <th>ID</th>
-      <th>名称</th>
+      <th>Product Name</th>
       <th>Weight</th>
       <th></th>
     </tr>
@@ -27,10 +27,10 @@
         <td><%= category.title %></td>
         <td><%= category.weight %></td>
         <td align="right">
-          <%= link_to "编辑", edit_admin_category_path(category) %> 
-          <%= link_to "删除", admin_category_path(category), method: :delete, 'data-confirm': "确认删除吗?" %>
+          <%= link_to "Edit", edit_admin_category_path(category) %>
+          <%= link_to "Delete", admin_category_path(category), method: :delete, 'data-confirm': "Are you sure you want to delete?" %>
           <% if category.root? %>
-            <%= link_to "查看子分类", admin_categories_path(id: category) %>
+            <%= link_to "View Subcategories", admin_categories_path(id: category) %>
           <% end -%>
         </td>
       </tr>

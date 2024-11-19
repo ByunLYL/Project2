@@ -2,7 +2,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   attr_accessor :password, :password_confirmation, :token
-  # 修复问题添加
+
   # attr_accessor :cellphone
   # attr_accessor :uuid
 

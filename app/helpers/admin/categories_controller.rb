@@ -23,7 +23,7 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.new(params.require(:category).permit!)
 
     if @category.save
-      flash[:notice] = "保存成功"
+      flash[:notice] = "Save Successfully"
       redirect_to admin_categories_path
     else
       render action: :new
@@ -38,7 +38,7 @@ class Admin::CategoriesController < Admin::BaseController
     @category.attributes = params.require(:category).permit!
 
     if @category.save
-      flash[:notice] = "修改成功"
+      flash[:notice] = "Modify Successfully"
       redirect_to admin_categories_path
     else
       render action: :new
@@ -47,10 +47,10 @@ class Admin::CategoriesController < Admin::BaseController
 
   def destroy
     if @category.destroy
-      flash[:notice] = "删除成功"
+      flash[:notice] = "Delete Successfully"
       redirect_to admin_categories_path
     else
-      flash[:notice] = "删除失败"
+      flash[:notice] = "Delete Failed"
       redirect_to(request.referer || admin_product_images_path)
     end
   end

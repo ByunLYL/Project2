@@ -8,7 +8,7 @@
     </ol>
 
     <% if params[:w].present? %>
-      <h2>搜索结果: "<%= params[:w] %>"</h2>
+      <h2>Search Result: "<%= params[:w] %>"</h2>
       <% if @products.any? %>
         <div class="products-list row">
           <% @products.each do |product| %>
@@ -17,14 +17,14 @@
                 <%= link_to image_tag(product.main_product_image.image.variant(resize_to_limit: [300, 300]), alt: product.title), product_path(product) %>
                 <div class="caption">
                   <h4><%= link_to product.title, product_path(product) %></h4>
-                  <p>价格: ¥<%= product.price %></p>
+                  <p>Price: ¥<%= product.price %></p>
                 </div>
               </div>
             </div>
           <% end %>
         </div>
       <% else %>
-        <p>没有找到符合条件的商品。</p>
+        <p>No suitable products were found.</p>
       <% end %>
     <% else %>
       <%= render 'shared/products' %>

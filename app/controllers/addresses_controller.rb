@@ -17,12 +17,12 @@ class AddressesController < ApplicationController
       @addresses = current_user.reload.addresses
       render json: {
         status: 'ok',
-        data: render_to_string('addresses/index')  # 使用正确的视图路径
+        data: render_to_string('addresses/index')
       }
     else
       render json: {
         status: 'error',
-        data: render_to_string('addresses/new')  # 使用正确的视图路径
+        data: render_to_string('addresses/new')
       }
     end
   end
@@ -37,12 +37,12 @@ class AddressesController < ApplicationController
       @addresses = current_user.reload.addresses
       render json: {
         status: 'ok',
-        data: render_to_string('addresses/index')  # 使用正确的视图路径
+        data: render_to_string('addresses/index')
       }
     else
       render json: {
         status: 'error',
-        data: render_to_string('addresses/new')  # 使用正确的视图路径
+        data: render_to_string('addresses/new')
       }
     end
   end
@@ -53,7 +53,7 @@ class AddressesController < ApplicationController
     @addresses = current_user.addresses
     render json: {
       status: 'ok',
-      data: render_to_string('addresses/index')  # 使用正确的视图路径
+      data: render_to_string('addresses/index')
     }
   end
 
@@ -64,7 +64,7 @@ class AddressesController < ApplicationController
     @addresses = current_user.reload.addresses
     render json: {
       status: 'ok',
-      data: render_to_string('addresses/index')  # 使用正确的视图路径
+      data: render_to_string('addresses/index')
     }
   end
 

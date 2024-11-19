@@ -15,11 +15,7 @@ class ProductsController < ApplicationController
       @products = @products.where(category_id: params[:category_id])
     end
 
-    # 使用主页视图渲染，但传递搜索结果
     render 'welcome/index'
   end
-
-
-
 
 end

@@ -1,13 +1,13 @@
 <div>
-  <h1><%= @category.new_record? ? "新建分类" : "修改分类 ##{params[:id]}" %></h1>
+  <h1><%= @category.new_record? ? "Create Category" : "Edit Category ##{params[:id]}" %></h1>
 </div>
 
 <div class="form-body">
-  <%= form_for @category, 
-    url: (@category.new_record? ? admin_categories_path : admin_category_path(@category)), 
-    method: (@category.new_record? ? 'post' : 'put'), 
+  <%= form_for @category,
+    url: (@category.new_record? ? admin_categories_path : admin_category_path(@category)),
+    method: (@category.new_record? ? 'post' : 'put'),
     html: { class: 'form-horizontal' } do |f| %>
-    
+
     <% unless @category.errors.blank? %>
       <div class="alert alert-danger">
         <ul class="list-unstyled">
@@ -19,7 +19,7 @@
     <% end -%>
 
     <div class="form-group">
-      <label for="ancestry" class="col-sm-2 control-label">所属分类:</label>
+      <label for="ancestry" class="col-sm-2 control-label">Belonging Category:</label>
       <div class="col-sm-5">
         <select name="category[ancestry]">
           <option></option>
@@ -28,24 +28,24 @@
             <option value="<%= category.id %>" <%= @category.ancestry == category.id.to_s ? 'selected' : '' %>><%= category.title %></option>
           <% end -%>
         </select>
-        为空为一级分类
+        Empty means it is a top-level category
       </div>
     </div>
     <div class="form-group">
-      <label for="title" class="col-sm-2 control-label">名称:*</label>
+      <label for="title" class="col-sm-2 control-label">Product Name:*</label>
       <div class="col-sm-5">
         <%= f.text_field :title, class: "form-control" %>
       </div>
     </div>
     <div class="form-group">
-      <label for="weight" class="col-sm-2 control-label">权重:</label>
+      <label for="weight" class="col-sm-2 control-label">Weight:</label>
       <div class="col-sm-5">
-        <%= f.text_field :weight, class: "form-control" %> 数值越大越靠前
+        <%= f.text_field :weight, class: "form-control" %> The higher the value, the closer to the front
       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-8">
-        <%= f.submit (@category.new_record? ? "新建分类" : "编辑分类"), class: "btn btn-default" %>
+        <%= f.submit (@category.new_record? ? "Create Category" : "Edit Category"), class: "btn btn-default" %>
       </div>
     </div>
   <% end -%>

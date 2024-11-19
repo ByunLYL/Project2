@@ -18,9 +18,9 @@ class Admin::ProductImagesController < Admin::BaseController
   def destroy
     @product_image = @product.product_images.find(params[:id])
     if @product_image.destroy
-      flash[:notice] = "删除成功"
+      flash[:notice] = "Delete Successfully"
     else
-      flash[:notice] = "删除失败"
+      flash[:notice] = "Delete Failed"
     end
 
     redirect_to(request.referer || admin_product_images_path)
@@ -31,9 +31,9 @@ class Admin::ProductImagesController < Admin::BaseController
     @product_image = @product.product_images.find(params[:id])
     @product_image.weight = params[:weight]
     if @product_image.save
-      flash[:notice] = "修改成功"
+      flash[:notice] = "Modify Successfully"
     else
-      flash[:notice] = "修改失败"
+      flash[:notice] = "Modify Failed"
     end
 
     redirect_to(request.referer || admin_product_images_path)
