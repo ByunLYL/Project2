@@ -31,3 +31,6 @@ rails c
 u = User.find 2
 u.is_admin = true
 u.save
+
+admin: 321@321.com
+password: 123456

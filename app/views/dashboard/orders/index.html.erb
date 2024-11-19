@@ -1,20 +1,32 @@
 <h1>我的订单</h1>
 <div class="row">
   <div class="container">
-    <% @orders.each do |order| %>
-      <div class="media shopping-cart-row">
-        <div class="media-left">
-        <%= image_tag order.product.main_product_image.image.variant(resize_to_limit: [100, 100]), class: 'media-object', alt: order.product.title %>
+    <% if @orders.present? %>
+      <% @orders.each do |order| %>
+        <div class="media shopping-cart-row">
+          <div class="media-left">
+            <% if order.product.present? && order.product.main_product_image.present? %>
+              <%= image_tag order.product.main_product_image.image.variant(resize_to_limit: [100, 100]), class: 'media-object', alt: order.product.title %>
+            <% else %>
+              <%= image_tag 'default_image.jpg', class: 'media-object', alt: '默认图片' %>
+            <% end %>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">订单号: <%= order.order_no %></h4>
+            <% if order.product.present? %>
+              <p><%= order.product.title %></p>
+            <% else %>
+              <p>产品信息不可用</p>
+            <% end %>
+            <p>数量: <%= order.amount %> 价格: ¥<%= order.total_money %></p>
+            <p><span class="label <%= order.is_paid? ? 'label-success' : 'label-warning' %>"><%= order.is_paid? ? '已付款' : '未付款' %></span> <%= order.address.contact_name %> <%= order.address.cellphone %> <%= order.address.address %></p>
+          </div>
         </div>
-        <div class="media-body">
-          <h4 class="media-heading">订单号: <%= order.order_no %></h4>
-          <p><%= order.product.title %></p>
-          <p>数量: <%= order.amount %> 价格: ¥<%= order.total_money %></p>
-          <p><span class="label <%= order.is_paid? ? 'label-success' : 'label-warning' %>"><%= order.is_paid? ? '已付款' : '未付款' %></span> <%= order.address.contact_name %> <%= order.address.cellphone %> <%= order.address.address %></p>
-        </div>
-      </div>
-    <% end -%>
+      <% end -%>
 
-    <%= will_paginate @orders %>
+      <%= will_paginate @orders %>
+    <% else %>
+      <p>无历史订单</p>
+    <% end %>
   </div>
 </div>

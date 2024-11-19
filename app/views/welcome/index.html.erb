@@ -6,6 +6,28 @@
     <ol class="breadcrumb">
       <li class="active">Home</li>
     </ol>
-    <%= render 'shared/products' %>
+
+    <% if params[:w].present? %>
+      <h2>搜索结果: "<%= params[:w] %>"</h2>
+      <% if @products.any? %>
+        <div class="products-list row">
+          <% @products.each do |product| %>
+            <div class="col-md-4 product-item">
+              <div class="thumbnail">
+                <%= link_to image_tag(product.main_product_image.image.variant(resize_to_limit: [300, 300]), alt: product.title), product_path(product) %>
+                <div class="caption">
+                  <h4><%= link_to product.title, product_path(product) %></h4>
+                  <p>价格: ¥<%= product.price %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>没有找到符合条件的商品。</p>
+      <% end %>
+    <% else %>
+      <%= render 'shared/products' %>
+    <% end %>
   </div>
 </div>
