@@ -1,3 +1,18 @@
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$container-width: 1200px;
+$sidebar-width: 300px;
+
+.button-base {
+  display: inline-block;
+  background-color: $primary-color;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
 .list-group-item {
   label {
     font-weight: normal;
@@ -11,6 +26,15 @@
     }
   }
 }
+
+.button-primary {
+  @extend .button-base;
+  background-color: $secondary-color;
+}
+.sidebar {
+  width: $container-width - $sidebar-width;
+}
+
 .msrp {
   text-decoration: line-through;
 }

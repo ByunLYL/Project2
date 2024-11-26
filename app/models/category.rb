@@ -1,7 +1,7 @@
 class Category < ApplicationRecord
 
-  validates :title, presence: { message: "名称不能为空" }
-  validates :title, uniqueness: { message: "名称不能重复" }
+  validates :title, presence: { message: "The name cannot be empty" }
+  validates :title, uniqueness: { message: "Name must not be repeated" }
 
   has_ancestry orphan_strategy: :destroy
 
