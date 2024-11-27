@@ -12,12 +12,14 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    #响应式
+
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="<%= root_path %>">Home <span class="sr-only">(current)</span></a></li>
       </ul>
-      <%= form_tag search_products_path, method: :get, class: "navbar-form navbar-left" do %>
+      <div class="navbar-form navbar-left" style="display: flex; align-items: center;">
+      <!-- Search form -->
+      <%= form_tag search_products_path, method: :get, class: "form-inline" do %>
         <div class="form-group">
           <% if @category %>
             <input type="hidden" name="category_id" value="<%= @category.id %>" />
@@ -26,6 +28,43 @@
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       <% end %>
+
+      <!-- Categories Dropdown -->
+      <div class="btn-group" style="margin-left: 10px;">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">PS</li>
+          <li><a href="<%= category_path(18) %>">Adventure Game (PS)</a></li>
+          <li><a href="<%= category_path(12) %>">First Person Shooting (PS)</a></li>
+          <li><a href="<%= category_path(15) %>">Real Time Strategy (PS)</a></li>
+          <li><a href="<%= category_path(9) %>">Role Playing Game (PS)</a></li>
+          <li><a href="<%= category_path(21) %>">Simulation Game (PS)</a></li>
+
+          <li role="separator" class="divider"></li>
+
+          <li class="dropdown-header">Xbox</li>
+          <li><a href="<%= category_path(17) %>">Adventure Game (Xbox)</a></li>
+          <li><a href="<%= category_path(14) %>">Real Time Strategy (Xbox)</a></li>
+          <li><a href="<%= category_path(20) %>">Simulation Game (Xbox)</a></li>
+          <li><a href="<%= category_path(7) %>">Role Playing Game (Xbox)</a></li>
+          <li><a href="<%= category_path(11) %>">First Person Shooting (Xbox)</a></li>
+
+          <li role="separator" class="divider"></li>
+
+          <li class="dropdown-header">NS</li>
+          <li><a href="<%= category_path(16) %>">Adventure Game (NS)</a></li>
+          <li><a href="<%= category_path(8) %>">Role Playing Game (NS)</a></li>
+          <li><a href="<%= category_path(10) %>">First Person Shooting (NS)</a></li>
+          <li><a href="<%= category_path(13) %>">Real Time Strategy (NS)</a></li>
+          <li><a href="<%= category_path(19) %>">Simulation Game (NS)</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Cart#{@shopping_cart_count}", shopping_carts_path %></li>
         <% unless logged_in? %>
