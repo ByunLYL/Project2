@@ -1,5 +1,4 @@
 class Order < ApplicationRecord
-
   validates :user_id, presence: true
   validates :product_id, presence: true
   validates :address_id, presence: true
@@ -15,8 +14,8 @@ class Order < ApplicationRecord
   before_create :gen_order_no
 
   module OrderStatus
-    Initial = 'initial'
-    Paid = 'paid'
+    Initial = "initial"
+    Paid = "paid"
   end
 
   def is_paid?
@@ -52,5 +51,4 @@ class Order < ApplicationRecord
   def gen_order_no
     self.order_no = RandomCode.generate_order_uuid
   end
-
 end

@@ -7,6 +7,6 @@ class CreateVerifyTokens < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :verify_tokens, [:cellphone, :token]
+    add_index :verify_tokens, [ :cellphone, :token ]
   end
 end

@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   layout false
   before_action :auth_user
-  before_action :find_address, only: [:edit, :update, :destroy, :set_default_address]
+  before_action :find_address, only: [ :edit, :update, :destroy, :set_default_address ]
 
   def index
     @addresses = current_user.addresses
@@ -16,13 +16,13 @@ class AddressesController < ApplicationController
     if @address.save
       @addresses = current_user.reload.addresses
       render json: {
-        status: 'ok',
-        data: render_to_string('addresses/index')
+        status: "ok",
+        data: render_to_string("addresses/index")
       }
     else
       render json: {
-        status: 'error',
-        data: render_to_string('addresses/new')
+        status: "error",
+        data: render_to_string("addresses/new")
       }
     end
   end
@@ -36,13 +36,13 @@ class AddressesController < ApplicationController
     if @address.save
       @addresses = current_user.reload.addresses
       render json: {
-        status: 'ok',
-        data: render_to_string('addresses/index')
+        status: "ok",
+        data: render_to_string("addresses/index")
       }
     else
       render json: {
-        status: 'error',
-        data: render_to_string('addresses/new')
+        status: "error",
+        data: render_to_string("addresses/new")
       }
     end
   end
@@ -52,8 +52,8 @@ class AddressesController < ApplicationController
 
     @addresses = current_user.addresses
     render json: {
-      status: 'ok',
-      data: render_to_string('addresses/index')
+      status: "ok",
+      data: render_to_string("addresses/index")
     }
   end
 
@@ -63,8 +63,8 @@ class AddressesController < ApplicationController
 
     @addresses = current_user.reload.addresses
     render json: {
-      status: 'ok',
-      data: render_to_string('addresses/index')
+      status: "ok",
+      data: render_to_string("addresses/index")
     }
   end
 

@@ -1,6 +1,5 @@
 class Admin::BaseController < ActionController::Base
-
-  layout 'admin/layouts/admin'
+  layout "admin/layouts/admin"
 
   before_action :auth_admin
 

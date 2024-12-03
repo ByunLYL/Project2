@@ -1,5 +1,4 @@
 class Category < ApplicationRecord
-
   validates :title, presence: { message: "The name cannot be empty" }
   validates :title, uniqueness: { message: "Name must not be repeated" }
 
@@ -22,5 +21,4 @@ class Category < ApplicationRecord
   def correct_ancestry
     self.ancestry = nil if self.ancestry.blank?
   end
-
 end

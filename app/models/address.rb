@@ -1,5 +1,4 @@
 class Address < ApplicationRecord
-
   validates :user_id, presence: true
   validates :address_type, presence: true
   validates :contact_name, presence: { message: "The consignee cannot be empty" }
@@ -14,8 +13,8 @@ class Address < ApplicationRecord
   before_destroy :remove_self_as_default_address
 
   module AddressType
-    User = 'user'
-    Order = 'order'
+    User = "user"
+    Order = "order"
   end
 
   private
@@ -34,6 +33,4 @@ class Address < ApplicationRecord
       self.user.save!
     end
   end
-
-
 end

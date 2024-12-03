@@ -1,5 +1,4 @@
 class Product < ApplicationRecord
-
   validates :category_id, presence: { message: "The category cannot be empty" }
   validates :title, presence: { message: "The name cannot be empty" }
   validates :status, inclusion: { in: %w[on off],
@@ -17,9 +16,9 @@ class Product < ApplicationRecord
   validates :description, presence: { message: "The description cannot be empty" }
 
   belongs_to :category
-  has_many :product_images, -> { order(weight: 'desc') },
+  has_many :product_images, -> { order(weight: "desc") },
     dependent: :destroy
-  has_one :main_product_image, -> { order(weight: 'desc') },
+  has_one :main_product_image, -> { order(weight: "desc") },
     class_name: :ProductImage
 
   before_create :set_default_attrs
@@ -27,8 +26,8 @@ class Product < ApplicationRecord
   scope :onshelf, -> { where(status: Status::On) }
 
   module Status
-    On = 'on'
-    Off = 'off'
+    On = "on"
+    Off = "off"
   end
 
   private

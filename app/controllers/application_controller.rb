@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     update_browser_uuid uuid
   end
 
-  def update_browser_uuid uuid
-    session[:user_uuid] = cookies.permanent['user_uuid'] = uuid
+  def update_browser_uuid(uuid)
+    session[:user_uuid] = cookies.permanent["user_uuid"] = uuid
   end
 end

@@ -1,9 +1,8 @@
 module SendSMS
   class << self
-
     MESSAGE_SUFFIX = "【蛋人商城】"
 
-    SMS_API_KEY = ENV['SMS_API_KEY']
+    SMS_API_KEY = ENV["SMS_API_KEY"]
     SMS_SEND_URL = "https://sms-api.luosimao.com/v1/send.json"
     SMS_STATUS_URL = "https://sms-api.luosimao.com/v1/status.json"
 
@@ -12,7 +11,7 @@ module SendSMS
     # SendSMS.status
     #
 
-    def send mobile, message
+    def send(mobile, message)
       options = {
         mobile: mobile,
         message: "#{message}#{MESSAGE_SUFFIX}"
@@ -49,6 +48,5 @@ module SendSMS
     def headers
       { Authorization: "Basic " + Base64.encode64("api:key-#{SMS_API_KEY}").chomp }
     end
-
   end
 end

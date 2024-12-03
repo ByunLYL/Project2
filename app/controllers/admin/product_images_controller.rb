@@ -1,5 +1,4 @@
 class Admin::ProductImagesController < Admin::BaseController
-
   before_action :find_product
 
   def index
@@ -12,7 +11,6 @@ class Admin::ProductImagesController < Admin::BaseController
     end
 
     redirect_to(request.referer || admin_product_images_path)
-
   end
 
   def destroy
@@ -24,7 +22,6 @@ class Admin::ProductImagesController < Admin::BaseController
     end
 
     redirect_to(request.referer || admin_product_images_path)
-
   end
 
   def update
@@ -37,12 +34,10 @@ class Admin::ProductImagesController < Admin::BaseController
     end
 
     redirect_to(request.referer || admin_product_images_path)
-
   end
 
   private
   def find_product
     @product = Product.find params[:product_id]
   end
-
 end

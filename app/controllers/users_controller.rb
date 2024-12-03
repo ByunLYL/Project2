@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def new
     @is_using_email = true
     @user = User.new
@@ -19,5 +18,4 @@ class UsersController < ApplicationController
       render action: :new
     end
   end
-
 end

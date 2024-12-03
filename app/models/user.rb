@@ -33,7 +33,7 @@ class User < ApplicationRecord
   has_many :payments
 
   def username
-    self.email.blank? ? self.cellphone : self.email.split('@').first
+    self.email.blank? ? self.cellphone : self.email.split("@").first
   end
 
   private
@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
   # TODO
   def validate_email_or_cellphone
-    if [self.email, self.cellphone].all? { |attr| attr.nil? }
+    if [ self.email, self.cellphone ].all? { |attr| attr.nil? }
       self.errors.add :base, "The email address and mobile phone number cannot be empty"
       return false
     else
@@ -71,7 +71,6 @@ class User < ApplicationRecord
       end
     end
 
-    return true
+    true
   end
 end
-

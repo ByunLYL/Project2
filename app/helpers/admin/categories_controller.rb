@@ -1,7 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
-
-  before_action :find_root_categories, only: [:new, :create, :edit, :update]
-  before_action :find_category, only: [:edit, :update, :destroy]
+  before_action :find_root_categories, only: [ :new, :create, :edit, :update ]
+  before_action :find_category, only: [ :edit, :update, :destroy ]
 
   def index
     if params[:id].blank?
@@ -63,5 +62,4 @@ class Admin::CategoriesController < Admin::BaseController
   def find_category
     @category = Category.find(params[:id])
   end
-
 end

@@ -1,11 +1,10 @@
 class ShoppingCartsController < ApplicationController
-
-  before_action :find_shopping_cart, only: [:update, :destroy]
+  before_action :find_shopping_cart, only: [ :update, :destroy ]
 
   def index
     fetch_home_data
     @shopping_carts = ShoppingCart.by_user_uuid(session[:user_uuid])
-      .order("id desc").includes([:product => [:main_product_image]])
+      .order("id desc").includes([ product: [ :main_product_image ] ])
   end
 
   def create
@@ -44,5 +43,4 @@ class ShoppingCartsController < ApplicationController
     @shopping_cart = ShoppingCart.by_user_uuid(session[:user_uuid])
       .where(id: params[:id]).first
   end
-
 end

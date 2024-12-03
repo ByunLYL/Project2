@@ -8,7 +8,7 @@ class CreateShoppingCarts < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :shopping_carts, [:user_id]
-    add_index :shopping_carts, [:user_uuid]
+    add_index :shopping_carts, [ :user_id ]
+    add_index :shopping_carts, [ :user_uuid ]
   end
 end

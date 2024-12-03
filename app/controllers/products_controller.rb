@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-
   before_action :fetch_home_data
 
   def show
@@ -15,7 +14,6 @@ class ProductsController < ApplicationController
       @products = @products.where(category_id: params[:category_id])
     end
 
-    render 'welcome/index'
+    render "welcome/index"
   end
-
 end

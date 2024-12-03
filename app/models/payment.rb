@@ -1,9 +1,8 @@
 class Payment < ApplicationRecord
-
   module PaymentStatus
-    Initial = 'initial'
-    Success = 'success'
-    Failed = 'failed'
+    Initial = "initial"
+    Success = "success"
+    Failed = "failed"
   end
 
   belongs_to :user
@@ -37,7 +36,7 @@ class Payment < ApplicationRecord
     self.status == PaymentStatus::Success
   end
 
-  def do_success_payment! options
+  def do_success_payment!(options)
     self.transaction do
       self.transaction_no = options[:trade_no]
       self.status = Payment::PaymentStatus::Success
@@ -58,7 +57,7 @@ class Payment < ApplicationRecord
     end
   end
 
-  def do_failed_payment! options
+  def do_failed_payment!(options)
     self.transaction_no = options[:trade_no]
     self.status = Payment::PaymentStatus::Failed
     self.raw_response = options.to_json
@@ -70,5 +69,4 @@ class Payment < ApplicationRecord
   def gen_payment_no
     self.payment_no = RandomCode.generate_utoken(32)
   end
-
 end

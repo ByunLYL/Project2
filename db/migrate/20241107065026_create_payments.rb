@@ -10,8 +10,8 @@ class CreatePayments < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :payments, [:user_id]
-    add_index :payments, [:payment_no], unique: true
-    add_index :payments, [:transaction_no]
+    add_index :payments, [ :user_id ]
+    add_index :payments, [ :payment_no ], unique: true
+    add_index :payments, [ :transaction_no ]
   end
 end

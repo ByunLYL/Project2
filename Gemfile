@@ -22,17 +22,18 @@ gem "jbuilder"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
-gem 'bootstrap-sass'
+gem "bootstrap-sass"
 # gem 'font-awesome-rails'
-gem 'sorcery'
-gem 'ancestry'
-gem 'will_paginate'
-gem 'rest-client'
-gem 'font-awesome-sass'
-gem 'jquery-rails'
-gem 'mini_magick'
+gem "sorcery"
+gem "ancestry"
+gem "will_paginate"
+gem "rest-client"
+gem "font-awesome-sass"
+gem "jquery-rails"
+gem "mini_magick"
 gem "image_processing", "~> 1.2"
 
+gem "rubocop", require: false
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -56,7 +57,7 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-    gem 'listen'
+    gem "listen"
 end
 
 group :development do
@@ -64,7 +65,7 @@ group :development do
   gem "web-console"
 
   # Highlight the fine-grained location where an error occurred [https://github.com/ruby/error_highlight]
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+  gem "error_highlight", ">= 0.4.0", platforms: [ :ruby ]
 end
 
 group :test do

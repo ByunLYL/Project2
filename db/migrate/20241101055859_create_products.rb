@@ -12,9 +12,9 @@ class CreateProducts < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :products, [:status, :category_id]
-    add_index :products, [:category_id]
-    add_index :products, [:uuid], unique: true
-    add_index :products, [:title]
+    add_index :products, [ :status, :category_id ]
+    add_index :products, [ :category_id ]
+    add_index :products, [ :uuid ], unique: true
+    add_index :products, [ :title ]
   end
 end

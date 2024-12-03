@@ -1,6 +1,5 @@
 class Admin::ProductsController < Admin::BaseController
-
-  before_action :find_product, only: [:edit, :update, :destroy]
+  before_action :find_product, only: [ :edit, :update, :destroy ]
 
   def index
     @products = Product.page(params[:page] || 1).per_page(params[:per_page] || 10)
@@ -55,5 +54,4 @@ class Admin::ProductsController < Admin::BaseController
   def find_product
     @product = Product.find(params[:id])
   end
-
 end

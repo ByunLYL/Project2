@@ -1,10 +1,9 @@
 class PaymentsController < ApplicationController
+  protect_from_forgery except: [ :alipay_notify ]
 
-  protect_from_forgery except: [:alipay_notify]
-
-  before_action :auth_user, except: [:pay_notify]
-  before_action :auth_request, only: [:pay_return, :pay_notify]
-  before_action :find_and_validate_payment_no, only: [:pay_return, :pay_notify]
+  before_action :auth_user, except: [ :pay_notify ]
+  before_action :auth_request, only: [ :pay_return, :pay_notify ]
+  before_action :find_and_validate_payment_no, only: [ :pay_return, :pay_notify ]
 
   def index
     @payment = current_user.payments.find_by(payment_no: params[:payment_no])
@@ -13,7 +12,7 @@ class PaymentsController < ApplicationController
   end
 
   def generate_pay
-    orders = current_user.orders.where(order_no: params[:order_nos].split(','))
+    orders = current_user.orders.where(order_no: params[:order_nos].split(","))
     payment = Payment.create_from_orders!(current_user, orders)
 
     redirect_to payments_path(payment_no: payment.payment_no)
@@ -28,11 +27,9 @@ class PaymentsController < ApplicationController
   end
 
   def success
-
   end
 
   def failed
-
   end
 
   private
@@ -73,25 +70,25 @@ class PaymentsController < ApplicationController
       if is_payment_success?
         # TODO
         render text: "Payment order number not found, but payment has been successful"
-        return
+        nil
       else
         render text: "Your order number was not found and your payment was not successful, please return to pay again"
-        return
+        nil
       end
     end
   end
 
-  def build_request_options payment
+  def build_request_options(payment)
     # opts:
     #   service: create_direct_pay_by_user | mobile.securitypay.pay
     #   sign_type: MD5 | RSA
     pay_options = {
-      "service" => 'create_direct_pay_by_user',
-      "partner" => ENV['ALIPAY_PID'],
-      "seller_id" => ENV['ALIPAY_PID'],
+      "service" => "create_direct_pay_by_user",
+      "partner" => ENV["ALIPAY_PID"],
+      "seller_id" => ENV["ALIPAY_PID"],
       "payment_type" => "1",
-      "notify_url" => ENV['ALIPAY_NOTIFY_URL'],
-      "return_url" => ENV['ALIPAY_RETURN_URL'],
+      "notify_url" => ENV["ALIPAY_NOTIFY_URL"],
+      "return_url" => ENV["ALIPAY_RETURN_URL"],
 
       "anti_phishing_key" => "",
       "exter_invoke_ip" => "",
@@ -100,7 +97,7 @@ class PaymentsController < ApplicationController
       "total_fee" => payment.total_money,
       "body" => "Game Mall Commodity purchase",
       "_input_charset" => "utf-8",
-      "sign_type" => 'MD5',
+      "sign_type" => "MD5",
       "sign" => ""
     }
 
@@ -112,34 +109,34 @@ class PaymentsController < ApplicationController
     "#{ENV['ALIPAY_URL']}?_input_charset=utf-8"
   end
 
-  def build_is_request_from_alipay? result_options
+  def build_is_request_from_alipay?(result_options)
     return false if result_options[:notify_id].blank?
 
-    body = RestClient.get ENV['ALIPAY_URL'] + "?" + {
+    body = RestClient.get ENV["ALIPAY_URL"] + "?" + {
       service: "notify_verify",
-      partner: ENV['ALIPAY_PID'],
+      partner: ENV["ALIPAY_PID"],
       notify_id: result_options[:notify_id]
     }.to_query
 
     body == "true"
   end
 
-  def build_is_request_sign_valid? result_options
+  def build_is_request_sign_valid?(result_options)
     options = result_options.to_hash
     options.extract!("controller", "action", "format")
 
     if options["sign_type"] == "MD5"
       options["sign"] == build_generate_sign(options)
     elsif options["sign_type"] == "RSA"
-      build_rsa_verify?(build_sign_data(options.dup), options['sign'])
+      build_rsa_verify?(build_sign_data(options.dup), options["sign"])
     end
   end
 
-  def build_generate_sign options
+  def build_generate_sign(options)
     sign_data = build_sign_data(options.dup)
 
     if options["sign_type"] == "MD5"
-      Digest::MD5.hexdigest(sign_data + ENV['ALIPAY_MD5_SECRET'])
+      Digest::MD5.hexdigest(sign_data + ENV["ALIPAY_MD5_SECRET"])
     elsif options["sign_type"] == "RSA"
       build_rsa_sign(sign_data)
     end
@@ -150,7 +147,7 @@ class PaymentsController < ApplicationController
     private_key_path = Rails.root.to_s + "/config/.alipay_self_private"
     pri = OpenSSL::PKey::RSA.new(File.read(private_key_path))
 
-    signature = Base64.encode64(pri.sign('sha1', data))
+    signature = Base64.encode64(pri.sign("sha1", data))
     signature
   end
 
@@ -164,8 +161,8 @@ class PaymentsController < ApplicationController
     pub.verify(digester, sign, data)
   end
 
-  def build_sign_data data_hash
+  def build_sign_data(data_hash)
     data_hash.delete_if { |k, v| k == "sign_type" || k == "sign" || v.blank? }
-    data_hash.to_a.map { |x| x.join('=') }.sort.join('&')
+    data_hash.to_a.map { |x| x.join("=") }.sort.join("&")
   end
 end
