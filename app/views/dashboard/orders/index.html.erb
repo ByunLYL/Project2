@@ -1,0 +1,32 @@
+<h1>My Order</h1>
+<div class="row">
+  <div class="container">
+    <% if @orders.present? %>
+      <% @orders.each do |order| %>
+        <div class="media shopping-cart-row">
+          <div class="media-left">
+            <% if order.product.present? && order.product.main_product_image.present? %>
+              <%= image_tag order.product.main_product_image.image.variant(resize_to_limit: [100, 100]), class: 'media-object', alt: order.product.title %>
+            <% else %>
+              <%= image_tag 'default_image.jpg', class: 'media-object', alt: 'Default Image' %>
+            <% end %>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">Order Number: <%= order.order_no %></h4>
+            <% if order.product.present? %>
+              <p><%= order.product.title %></p>
+            <% else %>
+              <p>Product information is unavailable</p>
+            <% end %>
+            <p>Quantity: <%= order.amount %> Price: ¥<%= order.total_money %></p>
+            <p><span class="label <%= order.is_paid? ? 'label-success' : 'label-warning' %>"><%= order.is_paid? ? 'Paid' : 'Unpaid' %></span> <%= order.address.contact_name %> <%= order.address.cellphone %> <%= order.address.address %></p>
+          </div>
+        </div>
+      <% end -%>
+
+      <%= will_paginate @orders %>
+    <% else %>
+      <p>No order history</p>
+    <% end %>
+  </div>
+</div>

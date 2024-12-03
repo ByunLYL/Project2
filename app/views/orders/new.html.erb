@@ -1,0 +1,59 @@
+<h1>Confirm Order</h1>
+<div class="row">
+  <div class="container">
+    <div class="page-header">
+      <h4><i class="fa fa-map-marker"></i> Shipping Address</h4>
+    </div>
+    <div id="address_list">
+
+    </div>
+
+    <div class="page-header">
+      <h4><i class="fa fa-credit-card"></i> Payment Method</h4>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <input type="radio" name="payment_method" value="alipay" checked />
+        <%= image_tag "alipay.png", width: 100 %>
+      </li>
+    </ul>
+
+    <div class="page-header">
+      <h4><i class="fa fa-list-alt"></i> Product List</h4>
+    </div>
+    <% @shopping_carts.each do |shopping_cart| %>
+      <div class="media shopping-cart-row">
+        <div class="media-left">
+        <%= image_tag shopping_cart.product.main_product_image.image.variant(resize_to_limit: [100, 100]), class: 'media-object', alt: shopping_cart.product.title %>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><%= shopping_cart.product.title %></h4>
+          Quantity: <%= shopping_cart.amount %> Price: ¥<%= shopping_cart.amount * shopping_cart.product.price %>
+        </div>
+      </div>
+    <% end -%>
+
+    <br />
+    <div class="pull-right">
+      <%= form_tag orders_path, method: :post, class: "create-order-form" do %>
+        <input type="hidden" name="address_id" />
+        <strong>Total Price: ¥<%= @shopping_carts.sum { |cart| cart.amount * cart.product.price } %></strong>
+        <input type="submit" value="Confirm Order" class="btn btn-danger btn-lg" />
+      <% end %>
+    </div>
+
+    <div class="clearfix"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <script>
+    $.get('/addresses', function(data) {
+      $('#address_list').html(data);
+    })
+  </script>
+<% end %>

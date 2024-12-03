@@ -1,0 +1,31 @@
+<div class="pull-right">
+  <%= link_to "Add Shipping Address", new_address_path, class: "btn btn-info btn-xs new-address-btn" %>
+</div>
+<div class="clearfix"></div>
+<br />
+<ul class="list-group">
+  <% unless @addresses.blank? %>
+    <% @addresses.each_with_index do |address, index| %>
+      <li class="list-group-item">
+        <label>
+          <input type="radio" name="address_id" value="<%= address.id %>" <%= 'checked' if current_user.default_address == address %> />
+          <%= address.contact_name %><br>
+          <%= address.address %><br>
+          <%= address.cellphone %>
+
+          <%= link_to "Edit", edit_address_path(address), remote: true, class: "inline edit-address-btn" %>
+          <%= link_to "Delete", address_path(address), remote: true, method: 'delete', "data-confirm": "Are you sure you want to delete this address？", class: "remove-address-btn inline" %>
+          <% if current_user.default_address == address %>
+            <span class="default_address">Default Address</span>
+          <% else %>
+            <%= link_to "Set as Default Shipping Address", set_default_address_address_path(address), remote: true, method: 'put', class: "set-default-address-btn inline" %>
+          <% end %>
+        </label>
+      </li>
+    <% end %>
+  <% else %>
+    <li class="list-group-item">
+    Please Add Shipping Address
+    </li>
+  <% end %>
+</ul>

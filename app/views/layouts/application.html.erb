@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game Mall</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+    <%= yield :stylesheets %>
+
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <%= render 'layouts/menu' %>
+    <div class=container">
+
+    <% unless flash[:notice].blank? %>
+    <div class="alert alert-info"><%= flash[:notice] %></div>
+    <% end -%>
+
+    <%= yield %>
+    </div>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :javascripts %>
+  </body>
+</html>
