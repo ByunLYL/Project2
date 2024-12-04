@@ -27,9 +27,6 @@ git add .
 git commit -m "(3) xxxxx"
 git push -u origin main(master) -->
 
-
-
-
 rails c
 u = User.find 2
 u.is_admin = true
