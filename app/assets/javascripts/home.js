@@ -1,6 +1,6 @@
 (function() {
 
-  //生成订单
+  //create order
   $('.create-order-form').submit(function() {
     var addressID = $('input[name="address_id"]:checked').val(),
         $form = $(this);
