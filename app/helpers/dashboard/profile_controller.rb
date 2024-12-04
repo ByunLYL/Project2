@@ -13,7 +13,7 @@ class Dashboard::ProfileController < Dashboard::BaseController
         render action: :password
       end
     else
-      current_user.errors.add :old_password, "旧密码不正确"
+      current_user.errors.add :old_password, "old password is not correct"
       render action: :password
     end
   end
