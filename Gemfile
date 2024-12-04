@@ -23,7 +23,6 @@ gem "jbuilder"
 # gem "kredis"
 
 gem "bootstrap-sass"
-# gem 'font-awesome-rails'
 gem "sorcery"
 gem "ancestry"
 gem "will_paginate"
