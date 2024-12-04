@@ -8,7 +8,7 @@
     <% @addresses.each_with_index do |address, index| %>
       <li class="list-group-item">
         <label>
-          <input type="radio" name="address_id" value="<%= address.id %>" <%= 'checked' if current_user.default_address == address %> />
+          <input type="radio" name="address_id" value="<%= address.id %>" <%= 'checked' if current_user.default_address == address %> >
           <%= address.contact_name %><br>
           <%= address.address %><br>
           <%= address.cellphone %>

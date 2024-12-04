@@ -1,7 +1,7 @@
 <div>
   <div class="pull-right">
     <%= form_tag admin_product_product_images_path(product_id: @product), method: :post, enctype: "multipart/form-data", class: "form-horizontal" do %>
-      <input type="file" name="images[]" multiple class="image-input" />
+      <input type="file" name="images[]" multiple class="image-input" >
       <%= submit_tag "Submit", class: "btn btn-primary" %>
     <% end -%>
   </div>
@@ -26,7 +26,7 @@
         <td><%= image_tag product_image.image.variant(resize_to_limit: [300, 300]) %></td>
         <td>
           <%= form_tag admin_product_product_image_path(@product, product_image), method: :put do %>
-            <input type="text" value="<%= product_image.weight %>" name="weight" />
+            <input type="text" value="<%= product_image.weight %>" name="weight" >
             <%= submit_tag "Update", class: "btn btn-default btn-xs" %>
           <% end -%>
         </td>

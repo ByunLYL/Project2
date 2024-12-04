@@ -15,10 +15,10 @@
     <div class="pull-right">
       <form action="<%= @payment_url %>" method="post">
         <% @pay_options.each do |k, v| %>
-          <input type="hidden" name="<%= k %>" value="<%= v %>" />
+          <input type="hidden" name="<%= k %>" value="<%= v %>" >
         <% end -%>
         <strong>¥<%= @payment.total_money %></strong>
-        <input type="submit" value="Payment" class="btn btn-success btn-lg" />
+        <input type="submit" value="Payment" class="btn btn-success btn-lg" >
       </form>
     </div>
   </div>

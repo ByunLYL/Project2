@@ -9,7 +9,7 @@
   </div>
 <% end -%>
 
-<input type="hidden" name="signup_type" value="<%= @is_using_email ? "email" : 'cellphone' %>" />
+<input type="hidden" name="signup_type" value="<%= @is_using_email ? "email" : 'cellphone' %>" >
 
 <%= form_for :user, url: users_path, method: :post, html: { class: 'form-horizontal', id: "user_form"} do |f| %>
   <div class="form-group email-inner <%= @is_using_email ? '' : 'hide' %>">
@@ -29,7 +29,7 @@
       <%= f.text_field :token, class: "form-control", placeholder: "Verification Code" %>
     </div>
     <div class="col-sm-2">
-      <input type="button" value="Get Code" class="btn btn-warning fetch-token-btn" data-url="<%= cellphone_tokens_path %>" />
+      <input type="button" value="Get Code" class="btn btn-warning fetch-token-btn" data-url="<%= cellphone_tokens_path %>" >
     </div>
   </div>
 

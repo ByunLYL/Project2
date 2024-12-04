@@ -14,6 +14,7 @@
     }
   })
 
+
   //收货地址
   $(document).on('click', '.new-address-btn', function() {
     $.get('/addresses/new', function(data) {

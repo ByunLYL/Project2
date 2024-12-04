@@ -13,7 +13,7 @@
     </div>
     <ul class="list-group">
       <li class="list-group-item">
-        <input type="radio" name="payment_method" value="alipay" checked />
+        <input type="radio" name="payment_method" value="alipay" checked >
         <%= image_tag "alipay.png", width: 100 %>
       </li>
     </ul>
@@ -36,9 +36,9 @@
     <br />
     <div class="pull-right">
       <%= form_tag orders_path, method: :post, class: "create-order-form" do %>
-        <input type="hidden" name="address_id" />
+        <input type="hidden" name="address_id" >
         <strong>Total Price: ¥<%= @shopping_carts.sum { |cart| cart.amount * cart.product.price } %></strong>
-        <input type="submit" value="Confirm Order" class="btn btn-danger btn-lg" />
+        <input type="submit" value="Confirm Order" class="btn btn-danger btn-lg">
       <% end %>
     </div>
 

@@ -16,7 +16,7 @@
             </div>
             <div class="media-right">
               <%= form_tag shopping_cart_path(shopping_cart), method: :put do %>
-                <p><input type="text" name="amount" value="<%= shopping_cart.amount %>" /></p>
+                <p><input type="text" name="amount" value="<%= shopping_cart.amount %>" ></p>
                 <p>
                   <%= submit_tag "Update", class: "btn btn-default btn-xs" %>
                   <%= link_to "Delete", shopping_cart_path(shopping_cart), method: :delete, 'data-confirm': "View Shopping Cart", class: "btn btn-default btn-xs" %>

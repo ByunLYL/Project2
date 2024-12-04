@@ -22,7 +22,7 @@
       <%= form_tag search_products_path, method: :get, class: "form-inline" do %>
         <div class="form-group">
           <% if @category %>
-            <input type="hidden" name="category_id" value="<%= @category.id %>" />
+            <input type="hidden" name="category_id" value="<%= @category.id %>">
           <% end %>
           <input type="text" name="w" value="<%= params[:w] %>" class="form-control search-input" placeholder="<%= @category ? "在 #{@category.title} 下搜索.." : 'Search throughout site..' %>">
         </div>
