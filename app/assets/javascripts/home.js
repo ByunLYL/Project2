@@ -15,7 +15,7 @@
   })
 
 
-  //收货地址
+
   $(document).on('click', '.new-address-btn', function() {
     $.get('/addresses/new', function(data) {
       if ($('#address_form_modal').length > 0) {
@@ -48,14 +48,14 @@
     $('#address_list').html(data.data);
   })
 
-  // 购物车
+  // cart
   $('.add-to-cart-btn').on('click', function() {
     var $this = $(this),
         $amount = $('input[name="amount"]'),
         $prog = $this.find('i');
 
     if ($amount.length > 0 && parseInt($amount.val()) <= 0) {
-      alert("购买数量至少为 1");
+      alert("Purchase quantity must be at least 1");
       return false;
     }
 
