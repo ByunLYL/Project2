@@ -6,7 +6,7 @@
         $form = $(this);
 
     if (!addressID) {
-      alert("请选择收货地址!");
+      alert("Please select a delivery address!");
       return false;
     } else {
       $form.find('input[name="address_id"]').val(addressID);
