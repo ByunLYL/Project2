@@ -1,0 +1,17 @@
+name: Simple CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - ecommerce  # 监听 ecommerce 分支上的推送事件
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 使用 Ubuntu 服务器
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # 检出代码
+
+      - name: Print a message
+        run: echo "🚀 CI/CD workflow is running successfully on the 'ecommerce' branch!"
